@@ -1,0 +1,29 @@
+{
+  "name": "nightcodestudio-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint src/**/*.js",
+    "start": "node ./src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tatiana-baranova/nightCodeStudio-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tatiana-baranova/nightCodeStudio-backend/issues"
+  },
+  "homepage": "https://github.com/tatiana-baranova/nightCodeStudio-backend#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "eslint": "^9.26.0",
+    "globals": "^16.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
