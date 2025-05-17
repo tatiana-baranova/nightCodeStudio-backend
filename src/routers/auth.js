@@ -8,7 +8,8 @@ import {
 } from '../controllers/auth.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
-
+// import { getCurrentUser } from '../controllers/user.js';
+// import { authenticate } from '../middlewares/authenticate.js';
 const authRouter = Router();
 
 authRouter.post(
@@ -22,6 +23,8 @@ authRouter.post(
   validateBody(loginUserSchema),
   ctrlWrapper(loginUserCtrlr),
 );
+
+// authRouter.get('/me', authenticate, ctrlWrapper(getCurrentUser));
 
 authRouter.post('/refresh', ctrlWrapper(refreshUsersSessionCtrlr));
 
