@@ -18,7 +18,8 @@ tags:
   - name: Summary
     description: Operations about summary statistics.
 servers:
-  - url: https://#.onrender.com
+  - url: http://localhost:3000
+  - url: https://nightcodestudio-backend.onrender.com
 paths:
   /auth/register:
     post:
