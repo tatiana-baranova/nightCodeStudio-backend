@@ -14,8 +14,8 @@ export const updateUserSchema = Joi.object({
     'any.unknown': 'Email update is not allowed',
     'any.forbidden': 'Email update is not allowed',
   }),
-  balance: Joi.any().forbidden().messages({
-    'any.unknown': 'Balance update is not allowed',
-    'any.forbidden': 'Balance update is not allowed',
+  balance: Joi.number().min(0).messages({
+    'number.base': 'Balance must be a number',
+    'number.min': 'Balance cannot be negative',
   }),
-}).or('name');
+}).or('name', 'balance');

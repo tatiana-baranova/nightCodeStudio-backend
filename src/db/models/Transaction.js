@@ -10,7 +10,7 @@ const transactionSchema = new Schema({
     },
     categories: {
         type: Types.ObjectId,
-        ref: 'Categories',
+        ref: 'categories',
         required: true,
     },
     amount: {
@@ -26,8 +26,8 @@ const transactionSchema = new Schema({
         default: '',
     },
     userId: {
-        type: Types.ObjectId,
-        ref: 'User',
+        type: Schema.Types.ObjectId,
+        ref: 'users',
         required: true,
     },
 }, { timestamps: true, versionKey: false },
