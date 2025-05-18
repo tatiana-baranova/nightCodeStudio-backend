@@ -1,0 +1,26 @@
+tags:
+  - Users
+summary: 'Update current user data'
+operationId: patchUser
+description: Update current user data
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: ../../components/schemas/updateUser.yaml
+responses:
+  '200':
+    description: Updated user data
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/user.yaml
+  '400':
+    $ref: ../../components/responses/400.yaml
+  '401':
+    $ref: ../../components/responses/401.yaml
+  '404':
+    $ref: ../../components/responses/404.yaml

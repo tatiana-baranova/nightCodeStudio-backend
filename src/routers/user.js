@@ -6,8 +6,8 @@ import { authenticate } from '../middlewares/authenticate.js';
 import { getCurrentUser, patchUser } from '../controllers/user.js';
 
 const userRouter = Router();
-userRouter.get('/', authenticate, ctrlWrapper(getCurrentUser));
-userRouter.patch('/', authenticate, validateBody(updateUserSchema), ctrlWrapper(patchUser),
+userRouter.get('/me', authenticate, ctrlWrapper(getCurrentUser));
+userRouter.patch('/me', authenticate, validateBody(updateUserSchema), ctrlWrapper(patchUser),
 );
 
 export default userRouter;

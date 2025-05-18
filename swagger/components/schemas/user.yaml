@@ -5,7 +5,6 @@ required:
   - email
   - password
   - balance
-
 properties:
   _id:
     description: "User's id"
