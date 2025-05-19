@@ -38,7 +38,17 @@ paths:
       $ref: ../swagger/paths/users/get.yaml
     patch:
       $ref: ../swagger/paths/users/patch.yaml
+  /categories:
+    get:
+      $ref: ../swagger/paths/categories/get.yaml
 components:
+  schemas:
+    category:
+      $ref: ../swagger/components/schemas/category.yaml
+    updateUser:
+      $ref: ../swagger/components/schemas/updateUser.yaml
+    user:
+      $ref: ../swagger/components/schemas/user.yaml
   securitySchemes:
     bearerAuth:
       type: http
