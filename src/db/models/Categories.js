@@ -1,17 +1,27 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
-const categorySchema = new Schema({
-    name: {
-        type: String,
-        required: true,
+const categorySchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      enum: [
+        'Incomes',
+        'Main expenses',
+        'Products',
+        'Car',
+        'Self care',
+        'Child care',
+        'Household products',
+        'Education',
+        'Leisure',
+        'Other expenses',
+        'Entertainment',
+      ],
     },
-    type: {
-        type: String,
-        enum: ['income', 'expense'],
-        required: true,
-    },
-}, { versionKey: false },
+  },
+  { versionKey: false, timestamps: false },
 );
 
 export const CategoryCollection = model('category', categorySchema);
