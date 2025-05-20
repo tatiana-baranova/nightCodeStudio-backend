@@ -8,7 +8,7 @@ const transactionSchema = new Schema({
         required: true,
         enum: ['income', 'expenses'],
     },
-    categories: {
+    category: {
         type: Types.ObjectId,
         ref: 'categories',
         required: true,
@@ -27,9 +27,9 @@ const transactionSchema = new Schema({
     },
     userId: {
         type: Schema.Types.ObjectId,
-        ref: 'users',
+        ref: 'Users',
         required: true,
     },
-}, { timestamps: true, versionKey: false },
+}, {  timestamps: false, versionKey: false },
 );
 export const TransactionCollection = model('transaction', transactionSchema);

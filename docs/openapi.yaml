@@ -41,6 +41,9 @@ paths:
   /categories:
     get:
       $ref: ../swagger/paths/categories/get.yaml
+  /transactions:
+    post:
+      $ref: ../swagger/paths/transactions/transaction.yaml
 components:
   schemas:
     category:
