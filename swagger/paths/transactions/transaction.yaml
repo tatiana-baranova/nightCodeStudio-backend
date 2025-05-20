@@ -1,0 +1,61 @@
+tags:
+  - Transactions
+summary: Create a new transaction
+operationId: createTransaction
+description: Create a new transaction
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../components/schemas/createTransactionSchema.yaml'
+responses:
+  '201':
+    description: Transaction created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Transaction created
+            date:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 682ccfeb2c00a73c70794bde
+                type:
+                  type: string
+                  example: 'expenses'
+                category:
+                  type: string
+                  example: 682cce37a20bd13853731499
+                amount:
+                  type: number
+                  example: 2800
+                date:
+                  type: string
+                  format: date-time
+                  example: 2025-05-20T00:00:00.000+00:00
+                comment:
+                  type: string
+                  example: 'Products for week'
+                userId:
+                  type: string
+                  example: 682ca952b3743090c7cf9c1e
+  '400':
+    $ref: ../../components/responses/400.yaml
+  '401':
+    $ref: ../../components/responses/401.yaml
+  '404':
+    $ref: ../../components/responses/404.yaml

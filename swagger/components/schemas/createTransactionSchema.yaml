@@ -1,0 +1,29 @@
+type: object
+required:
+  - type
+  - category
+  - amount
+  - date
+properties:
+  type:
+    type: string
+    enum: [income, expenses]
+    example: expenses
+    description: Type of transaction
+  amount:
+    type: number
+    example: 2800
+    description: Transaction amount
+  category:
+    type: string
+    example: 'Products'
+    description: Title category
+  date:
+    type: string
+    format: date
+    example: 2025-05-20
+    description: Date transaction
+  comment:
+    type: string
+    example: 'Products for week'
+    description: Transaction comment (optional)
