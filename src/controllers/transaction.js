@@ -2,7 +2,7 @@ import { createTransactionSchema } from "../validation/transaction.js";
 import { createTransaction } from "../services/transactions.js";
 import createHttpError from "http-errors";
 
-    export const createNewTransaction = async (req, res, next) => {
+    export const createNewTransaction = async (req, res) => {
 
     const { error, value } = createTransactionSchema.validate(req.body);
     if (error) {

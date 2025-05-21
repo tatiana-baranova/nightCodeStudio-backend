@@ -15,7 +15,7 @@ export const getSummaryByPeriod = async (userId, period) => {
     {
       $lookup: {
         from: 'categories',
-        localField: 'categoryId',
+        localField: 'category',
         foreignField: '_id',
         as: 'category',
       },
@@ -29,11 +29,12 @@ export const getSummaryByPeriod = async (userId, period) => {
     {
       $group: {
         _id: {
-          transactionType: '$transactionType',
-          categoryId: '$categoryId',
+          type: '$type',
+          categoryId: '$category._id',
         },
-        total: { $sum: '$summ' },
+        total: { $sum: '$amount' },
         title: { $first: '$category.title' },
+        categoryId: { $first: '$category._id' },
       },
     },
   ]);
@@ -45,16 +46,16 @@ export const getSummaryByPeriod = async (userId, period) => {
     totalExpense: 0,
   };
   report.forEach((item) => {
-    const { transactionType, categoryId } = item._id;
+    const { type, categoryId } = item._id;
     const { total, title } = item;
 
     const categoryObj = {
-      categoryId: categoryId.toString(),
+      categoryId: categoryId ? categoryId.toString() : 'unknown',
       title: title || 'Unknown',
       total,
     };
 
-    if (transactionType === 'income') {
+    if (type === 'income') {
       result.income.push(categoryObj);
       result.totalIncome += total;
     } else {
