@@ -18,8 +18,8 @@ tags:
   - name: Summary
     description: Operations about summary statistics.
 servers:
-  - url: http://localhost:3000
   - url: https://nightcodestudio-backend.onrender.com
+  - url: http://localhost:3000
 paths:
   /auth/register:
     post:
@@ -33,7 +33,7 @@ paths:
   /auth/logout:
     post:
       $ref: ../swagger/paths/auth/logout.yaml
-  /user/me:
+  /users/me:
     get:
       $ref: ../swagger/paths/users/get.yaml
     patch:
@@ -43,7 +43,9 @@ paths:
       $ref: ../swagger/paths/categories/get.yaml
   /transactions:
     post:
-      $ref: ../swagger/paths/transactions/transaction.yaml
+      $ref: ../swagger/paths/transactions/post.yaml
+    get:
+      $ref: ../swagger/paths/transactions/get.yaml
 components:
   schemas:
     category:

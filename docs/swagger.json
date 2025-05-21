@@ -11,10 +11,10 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "https://nightcodestudio-backend.onrender.com"
     },
     {
-      "url": "https://nightcodestudio-backend.onrender.com"
+      "url": "http://localhost:3000"
     }
   ],
   "tags": [
@@ -445,7 +445,7 @@
         }
       }
     },
-    "/user/me": {
+    "/users/me": {
       "get": {
         "tags": [
           "Users"
@@ -581,7 +581,7 @@
                             "$ref": "#/components/schemas/category"
                           }
                         },
-                        "expense": {
+                        "expenses": {
                           "type": "array",
                           "items": {
                             "$ref": "#/components/schemas/category"
@@ -595,7 +595,7 @@
                             "title": "Incomes"
                           }
                         ],
-                        "expense": [
+                        "expenses": [
                           {
                             "_id": "6804059587a5c385d8e99716",
                             "title": "Main expenses"
@@ -742,6 +742,55 @@
             "$ref": "#/components/responses/404"
           }
         }
+      },
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get all transactions",
+        "operationId": "getAllTransactions",
+        "description": "Get all transactions",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully all transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "transactions"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully all transactions"
+                    },
+                    "transactions": {
+                      "$ref": "#/components/schemas/transaction"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
       }
     }
   },
@@ -770,6 +819,8 @@
           "name": {
             "type": "string",
             "description": "New name",
+            "minLength": 2,
+            "maxLength": 32,
             "example": "Jon Smith"
           }
         }
@@ -787,17 +838,21 @@
           "_id": {
             "description": "User's id",
             "type": "string",
-            "example": "65e4decdd286b30065d54fa6"
+            "example": "65e4decdd286b30065d54fa6",
+            "readOnly": true
           },
           "name": {
             "description": "User's name",
             "type": "string",
+            "minLength": 2,
+            "maxLength": 32,
             "example": "Jane Smith"
           },
           "email": {
             "description": "User's email",
             "type": "string",
-            "example": "janesmith11@gmail.com"
+            "example": "janesmith11@gmail.com",
+            "readOnly": true
           },
           "password": {
             "description": "User's password",
@@ -807,7 +862,84 @@
           "balance": {
             "description": "User's balance",
             "type": "number",
-            "example": "10000"
+            "example": "10000",
+            "readOnly": true
+          }
+        }
+      },
+      "transaction": {
+        "type": "object",
+        "required": [
+          "_id",
+          "type",
+          "category",
+          "amount",
+          "date",
+          "comment",
+          "userId",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "682ccfeb2c00a73c70794bde"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "income",
+              "expenses"
+            ],
+            "example": "income"
+          },
+          "category": {
+            "type": "object",
+            "required": [
+              "_id",
+              "title",
+              "type"
+            ],
+            "properties": {
+              "_id": {
+                "type": "string",
+                "example": "682cce37a20bd13853731497"
+              },
+              "title": {
+                "type": "string",
+                "example": "Incomes"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "income",
+                  "expense"
+                ],
+                "example": "income"
+              }
+            }
+          },
+          "amount": {
+            "type": "number",
+            "example": 10000
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-05-20T00:00:00.000Z"
+          },
+          "comment": {
+            "type": "string",
+            "example": "Salary"
+          },
+          "userId": {
+            "type": "string",
+            "example": "682ca952b3743090c7cf9c1e"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-05-20T18:54:35.507Z"
           }
         }
       },
@@ -831,19 +963,21 @@
           },
           "amount": {
             "type": "number",
+            "minLength": 1,
+            "maxLength": 1000000,
             "example": 2800,
             "description": "Transaction amount"
           },
           "category": {
             "type": "string",
             "example": "Products",
-            "description": "Title category"
+            "description": "Products"
           },
           "date": {
             "type": "string",
             "format": "date",
             "example": "2025-05-20",
-            "description": "Date transaction"
+            "description": "Date in format YYYY-MM-DD"
           },
           "comment": {
             "type": "string",

@@ -30,7 +30,7 @@ responses:
                   type: array
                   items:
                     $ref: ../../components/schemas/category.yaml
-                expense:
+                expenses:
                   type: array
                   items:
                     $ref: ../../components/schemas/category.yaml
@@ -38,7 +38,7 @@ responses:
                 income:
                   - _id: '6804058087a5c385d8e99714'
                     title: 'Incomes'
-                expense:
+                expenses:
                   - _id: '6804059587a5c385d8e99716'
                     title: 'Main expenses'
                   - _id: '680405a687a5c385d8e99718'
