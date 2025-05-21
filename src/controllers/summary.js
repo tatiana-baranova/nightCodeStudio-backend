@@ -21,3 +21,4 @@ export const getSummaryController = async (req, res) => {
     throw createHttpError(500, 'Server error');
   }
 };
+
