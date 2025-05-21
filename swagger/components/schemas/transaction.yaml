@@ -1,0 +1,53 @@
+type: object
+required:
+  - _id
+  - type
+  - category
+  - amount
+  - date
+  - comment
+  - userId
+  - createdAt
+  - updatedAt
+properties:
+  _id:
+    type: string
+    example: 682ccfeb2c00a73c70794bde
+  type:
+    type: string
+    enum: [income, expenses]
+    example: income
+  category:
+    type: object
+    required:
+      - _id
+      - title
+      - type
+    properties:
+      _id:
+        type: string
+        example: 682cce37a20bd13853731497
+      title:
+        type: string
+        example: Incomes
+      type:
+        type: string
+        enum: [income, expense]
+        example: income
+  amount:
+    type: number
+    example: 10000
+  date:
+    type: string
+    format: date-time
+    example: 2025-05-20T00:00:00.000Z
+  comment:
+    type: string
+    example: Salary
+  userId:
+    type: string
+    example: 682ca952b3743090c7cf9c1e
+  createdAt:
+    type: string
+    format: date-time
+    example: 2025-05-20T18:54:35.507Z

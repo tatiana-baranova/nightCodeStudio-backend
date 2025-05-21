@@ -9,7 +9,6 @@ export const createTransaction = async (userId, data) => {
     if (!existingCategory) {
         throw createHttpError(400, 'Category not found');
     }
-
     const transaction = await TransactionCollection.create({
         userId,
         type,
@@ -22,3 +21,7 @@ export const createTransaction = async (userId, data) => {
     return transaction;
 };
 
+export const getAllTransactions = async (userId) => {
+    const transactions = await TransactionCollection.find({ userId}).populate('category');
+    return transactions;
+};

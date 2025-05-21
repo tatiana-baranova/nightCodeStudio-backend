@@ -12,17 +12,19 @@ properties:
     description: Type of transaction
   amount:
     type: number
+    minLength: 1
+    maxLength: 1000000
     example: 2800
     description: Transaction amount
   category:
     type: string
     example: 'Products'
-    description: Title category
+    description: Products
   date:
     type: string
     format: date
-    example: 2025-05-20
-    description: Date transaction
+    example: '2025-05-20'
+    description: Date in format YYYY-MM-DD
   comment:
     type: string
     example: 'Products for week'

@@ -3,4 +3,6 @@ properties:
   name:
     type: string
     description: New name
+    minLength: 2
+    maxLength: 32
     example: 'Jon Smith'
