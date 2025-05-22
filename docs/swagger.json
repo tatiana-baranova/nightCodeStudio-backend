@@ -793,6 +793,46 @@
         }
       }
     },
+    "/transactions/{id}": {
+      "delete": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Delete transaction by Id",
+        "operationId": "deleteTransaction",
+        "description": "Delete transaction by Id",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "680e21ddc1ef3c47b8a1f6ca"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
     "/transactions/summary": {
       "get": {
         "tags": [
