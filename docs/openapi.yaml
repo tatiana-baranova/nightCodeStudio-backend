@@ -46,6 +46,9 @@ paths:
       $ref: ../swagger/paths/transactions/post.yaml
     get:
       $ref: ../swagger/paths/transactions/get.yaml
+  /transactions/{id}:
+    delete:
+      $ref: ../swagger/paths/transactions/{id}/delete.yaml
   /transactions/summary:
     get:
       $ref: ../swagger/paths/summary/summary.yaml

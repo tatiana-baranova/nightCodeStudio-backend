@@ -25,3 +25,5 @@ export const getAllTransactions = async (userId) => {
     const transactions = await TransactionCollection.find({ userId}).populate('category');
     return transactions;
 };
+
+export const deleteTransaction = (id, userId) => TransactionCollection.findOneAndDelete({ _id: id, userId });
