@@ -38,6 +38,9 @@ paths:
       $ref: ../swagger/paths/users/get.yaml
     patch:
       $ref: ../swagger/paths/users/patch.yaml
+  /users/photo:
+    patch:
+      $ref: ../swagger/paths/users/updatePhoto.yaml
   /categories:
     get:
       $ref: ../swagger/paths/categories/get.yaml
@@ -60,6 +63,10 @@ components:
       $ref: ../swagger/components/schemas/updateUser.yaml
     user:
       $ref: ../swagger/components/schemas/user.yaml
+    createTransactionSchema:
+      $ref: ../swagger/components/schemas/createTransactionSchema.yaml
+    transaction:
+      $ref: ../swagger/components/schemas/transaction.yaml
   securitySchemes:
     bearerAuth:
       type: http

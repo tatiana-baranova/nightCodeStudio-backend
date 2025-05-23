@@ -1,0 +1,43 @@
+tags:
+  - Users
+summary: Update user's profile photo
+operationId: updateUserPhoto
+description: Allows the user to update their profile photo.
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          photo:
+            type: string
+            format: binary
+            description: New user's profile photo
+            example: 'C:\Users\OneDrive\Pictures\photo.jpg'
+responses:
+  '200':
+    description: User photo updated successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully updated user photo!
+            data:
+              $ref: ../../components/schemas/user.yaml
+  '400':
+    $ref: '../../components/responses/400.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'

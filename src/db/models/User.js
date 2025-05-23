@@ -1,19 +1,19 @@
 import { Schema, model } from 'mongoose';
 
 const userSchema = new Schema(
-    {
-    name: { type: String,required: true },
-    email: { type: String,required: true, unique: true },
-    password: { type: String, required: true, },
-    balance: { type: Number, default: 0, },
-    },
-    { timestamps: true, versionKey: false },
-
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    balance: { type: Number, default: 0 },
+    photo: { type: String, default: null },
+  },
+  { timestamps: true, versionKey: false },
 );
 userSchema.methods.toJSON = function () {
-    const obj = this.toObject();
-    delete obj.password;
-    return obj;
+  const obj = this.toObject();
+  delete obj.password;
+  return obj;
 };
 
 export const UserCollection = model('user', userSchema);
