@@ -27,3 +27,16 @@ export const getAllTransactions = async (userId) => {
 };
 
 export const deleteTransaction = (id, userId) => TransactionCollection.findOneAndDelete({ _id: id, userId });
+
+export const updateTransaction = async (id, payload, options = {}) => {
+    const rawResult = await TransactionCollection.findOneAndUpdate(
+        id,
+        payload,
+        {
+            new: true,
+            ...options
+        }
+    );
+    if (!rawResult) return null;
+    return rawResult;
+};
