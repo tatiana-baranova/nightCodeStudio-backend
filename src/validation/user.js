@@ -6,6 +6,10 @@ export const updateUserSchema = Joi.object({
     'string.min': 'Username should have at least {#limit} characters',
     'string.max': 'Username should have at most {#limit} characters',
   }),
+  photo: Joi.string().uri().messages({
+    'string.base': 'Photo must be a string',
+    'string.uri': 'Photo must be a valid URI',
+  }),
   password: Joi.any().forbidden().messages({
     'any.unknown': 'Password update is not allowed',
     'any.forbidden': 'Password update is not allowed',
@@ -18,4 +22,4 @@ export const updateUserSchema = Joi.object({
     'number.base': 'Balance must be a number',
     'number.min': 'Balance cannot be negative',
   }),
-}).or('name');
+}).or('name', 'photo');

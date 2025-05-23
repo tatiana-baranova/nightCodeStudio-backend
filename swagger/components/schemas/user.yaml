@@ -5,6 +5,8 @@ required:
   - email
   - password
   - balance
+  - createdAt
+  - updatedAt
 properties:
   _id:
     description: "User's id"
@@ -31,3 +33,18 @@ properties:
     type: number
     example: '10000'
     readOnly: true
+  photo:
+    description: URL of the user's photo
+    type: string
+    format: uri
+    example: 'https://res.cloudinary.com/d9tokskxo/image/upload/v1640000000/67dd4fb6c1e25079abca809c.jpg'
+  createdAt:
+    description: Timestamp of user creation
+    type: string
+    format: date-time
+    example: '2025-01-01T12:00:00Z'
+  updatedAt:
+    description: Timestamp of the latest update of an user
+    type: string
+    format: date-time
+    example: '2025-01-01T12:00:00Z'
