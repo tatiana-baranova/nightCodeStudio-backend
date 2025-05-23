@@ -7,3 +7,11 @@ export const createTransactionSchema = Joi.object({
     date: Joi.string().pattern(/^\d{4}-\d{2}-\d{2}$/).required(),
     comment: Joi.string().min(2).max(100).allow('', null),
 });
+
+export const updateTransactionSchema = Joi.object({
+    type: Joi.string().valid('income', 'expenses'),
+    category: Joi.string(),
+    amount: Joi.number().min(0.01).max(1000000),
+    date: Joi.string().pattern(/^\d{4}-\d{2}-\d{2}$/),
+    comment: Joi.string().min(2).max(100).allow('', null),
+}).min(1);

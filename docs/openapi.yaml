@@ -52,6 +52,8 @@ paths:
   /transactions/{id}:
     delete:
       $ref: ../swagger/paths/transactions/{id}/delete.yaml
+    patch:
+      $ref: ../swagger/paths/transactions/{id}/patch.yaml
   /transactions/summary:
     get:
       $ref: ../swagger/paths/summary/summary.yaml

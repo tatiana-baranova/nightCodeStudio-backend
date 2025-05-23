@@ -1,5 +1,5 @@
 import { createTransactionSchema } from "../validation/transaction.js";
-import { createTransaction, getAllTransactions, deleteTransaction } from "../services/transactions.js";
+import { createTransaction, getAllTransactions, deleteTransaction, updateTransaction } from "../services/transactions.js";
 import createHttpError from "http-errors";
 
 export const createNewTransactionController = async (req, res) => {
@@ -34,4 +34,26 @@ export const deleteTransactionController = async (req, res) => {
         throw createHttpError(404, 'Transaction not found');
     }
     res.status(204).send();
+};
+
+export const patchTransactionController = async (req, res) => {
+    const userId = req.user._id;
+    if (!userId) {
+        throw createHttpError(400, 'User is not authenticated');
+    }
+    const { id: transactionId } = req.params;
+    const userAndTransactionId = { userId, _id: transactionId };
+
+    const result = await updateTransaction(userAndTransactionId,
+        {
+            ...req.body,
+        });
+        if (!result) {
+            throw(createHttpError(404, "Transaction not found"));
+        }
+        res.status(200).json({
+            status: 200,
+            message: "Successfully patched a transaction!",
+            data: result,
+        });
 };

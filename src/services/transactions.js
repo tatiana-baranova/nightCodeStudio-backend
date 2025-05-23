@@ -28,9 +28,9 @@ export const getAllTransactions = async (userId) => {
 
 export const deleteTransaction = (id, userId) => TransactionCollection.findOneAndDelete({ _id: id, userId });
 
-export const updateTransaction = async (id, payload, options = {}) => {
+export const updateTransaction = async (userAndTransactionId, payload, options = {}) => {
     const rawResult = await TransactionCollection.findOneAndUpdate(
-        id,
+        userAndTransactionId,
         payload,
         {
             new: true,
