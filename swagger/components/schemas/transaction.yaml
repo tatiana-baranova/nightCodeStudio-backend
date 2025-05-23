@@ -36,11 +36,13 @@ properties:
         example: income
   amount:
     type: number
+    minimum: 0.01
+    maximum: 1000000
     example: 10000
   date:
     type: string
     format: date-time
-    example: 2025-05-20T00:00:00.000Z
+    example: 2025-05-20
   comment:
     type: string
     example: Salary
