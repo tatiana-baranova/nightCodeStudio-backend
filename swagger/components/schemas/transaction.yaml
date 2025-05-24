@@ -5,7 +5,6 @@ required:
   - category
   - amount
   - date
-  - comment
   - userId
   - createdAt
   - updatedAt

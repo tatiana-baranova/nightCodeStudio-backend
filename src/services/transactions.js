@@ -1,6 +1,7 @@
 import { TransactionCollection } from "../db/models/Transaction.js";
 import { CategoryCollection } from "../db/models/Categories.js";
 import createHttpError from "http-errors";
+import mongoose from "mongoose";
 
 export const createTransaction = async (userId, data) => {
     const { type, category, amount, date, comment } = data;
@@ -17,7 +18,8 @@ export const createTransaction = async (userId, data) => {
         date,
         comment,
     });
-    console.log('✓ Transaction created:', transaction);
+    // console.log('✓ Transaction created:', transaction);
+
     return transaction;
 };
 
@@ -29,14 +31,26 @@ export const getAllTransactions = async (userId) => {
 export const deleteTransaction = (id, userId) => TransactionCollection.findOneAndDelete({ _id: id, userId });
 
 export const updateTransaction = async (userAndTransactionId, payload, options = {}) => {
+    const updateData = { ...payload };
+    if (updateData.category) {
+        const isValidObjectId = mongoose.Types.ObjectId.isValid(updateData.category);
+    if (!isValidObjectId) {
+        const categoryDoc = await CategoryCollection.findOne({ title: updateData.category });
+        if (!categoryDoc) {
+            throw createHttpError(400, 'Category not found');
+        }
+        updateData.category = categoryDoc._id;
+        }
+    }
     const rawResult = await TransactionCollection.findOneAndUpdate(
         userAndTransactionId,
-        payload,
+        updateData,
         {
             new: true,
             ...options
         }
-    );
+    ).populate('category', 'title');
+
     if (!rawResult) return null;
     return rawResult;
 };
