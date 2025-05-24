@@ -843,7 +843,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "example": "Successfully all transactions"
+                      "example": "Successfully get all transactions"
                     },
                     "transactions": {
                       "$ref": "#/components/schemas/transaction"
@@ -1252,7 +1252,6 @@
           "category",
           "amount",
           "date",
-          "comment",
           "userId",
           "createdAt",
           "updatedAt"

@@ -1,6 +1,7 @@
 import { createTransactionSchema } from "../validation/transaction.js";
 import { createTransaction, getAllTransactions, deleteTransaction, updateTransaction } from "../services/transactions.js";
 import createHttpError from "http-errors";
+import { TransactionCollection } from "../db/models/Transaction.js";
 
 export const createNewTransactionController = async (req, res) => {
     const { error, value } = createTransactionSchema.validate(req.body);
@@ -8,9 +9,11 @@ export const createNewTransactionController = async (req, res) => {
         throw createHttpError(400, error.details[0].message);
     }
     const transaction = await createTransaction(req.user._id, value);
+    const populatedTransaction = await TransactionCollection.findById(transaction._id)
+    .populate('category', 'title');
     res.status(201).json({
         message: 'Transaction created',
-        transaction,
+        data: populatedTransaction,
     });
 };
 
@@ -21,7 +24,7 @@ export const getAllTransactionsUserController = async (req, res) => {
         }
     const transactions = await getAllTransactions(userId);
     res.status(200).json({
-        message: 'Successfully all transactions',
+        message: 'Successfully get all transactions',
         transactions,
     });
 };
@@ -44,10 +47,7 @@ export const patchTransactionController = async (req, res) => {
     const { id: transactionId } = req.params;
     const userAndTransactionId = { userId, _id: transactionId };
 
-    const result = await updateTransaction(userAndTransactionId,
-        {
-            ...req.body,
-        });
+    const result = await updateTransaction(userAndTransactionId, req.body);
         if (!result) {
             throw(createHttpError(404, "Transaction not found"));
         }
