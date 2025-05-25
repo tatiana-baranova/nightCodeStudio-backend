@@ -9,6 +9,7 @@ export const updateUser = async (_id, payload, options = {}) => {
             ...options
         }
     );
+
     if (!rewResult) return null;
     return rewResult;
 };
