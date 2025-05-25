@@ -1,11 +1,17 @@
 import createHttpError from 'http-errors';
 import { updateUser } from '../services/user.js';
 import { updateUserSchema } from '../validation/user.js';
+import { TransactionCollection } from '../db/models/Transaction.js';
 
 export const getCurrentUser = async (req, res) => {
   if (!req.user) {
     throw createHttpError(401, 'Not authorized');
   }
+
+  const transactions = await TransactionCollection.find({ userId: req.user._id });
+  const balance = transactions.reduce((acc, tx) => {
+    return tx.type === 'income' ? acc + tx.amount : acc - tx.amount;
+  }, 0);
   res.json({
     status: 200,
     message: 'User profile retrieved successfully',
@@ -13,7 +19,7 @@ export const getCurrentUser = async (req, res) => {
       id: req.user._id,
       email: req.user.email,
       name: req.user.name,
-      balance: req.user.balance,
+      balance: Number(balance.toFixed(2)),
       photo: req.user.photo,
     },
   });
