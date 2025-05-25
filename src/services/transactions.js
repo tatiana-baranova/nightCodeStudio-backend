@@ -18,7 +18,6 @@ export const createTransaction = async (userId, data) => {
         date,
         comment,
     });
-    // console.log('✓ Transaction created:', transaction);n
 
     return transaction;
 };
