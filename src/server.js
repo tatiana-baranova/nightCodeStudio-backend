@@ -15,8 +15,8 @@ export const setupServer = () => {
   app.use(
     cors({
       origin: [
-        'https://night-code-studio-front.vercel.app',
         'http://localhost:3000',
+        'https://night-code-studio-front.vercel.app',
       ],
       methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
       credentials: true,
