@@ -1040,7 +1040,7 @@
                         }
                       }
                     },
-                    "expense": {
+                    "expenses": {
                       "type": "array",
                       "items": {
                         "type": "object",
@@ -1064,7 +1064,7 @@
                       "type": "number",
                       "example": 50000
                     },
-                    "totalExpense": {
+                    "totalExpenses": {
                       "type": "number",
                       "example": 10000
                     },
@@ -1084,7 +1084,7 @@
                       "total": 50000
                     }
                   ],
-                  "expense": [
+                  "expenses": [
                     {
                       "categoryId": "6804060687a5c385d8e99724",
                       "title": "Leisure",
@@ -1092,7 +1092,7 @@
                     }
                   ],
                   "totalIncome": 50000,
-                  "totalExpense": 10000,
+                  "totalExpenses": 10000,
                   "balance": 40000
                 }
               }
