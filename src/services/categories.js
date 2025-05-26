@@ -4,6 +4,8 @@ export const getCategories = async () => {
   const categories = await CategoryCollection.find();
 
   const income = categories.filter((category) => category.title === 'Incomes');
-  const expense = categories.filter((category) => category.title !== 'Incomes');
-  return { income, expense };
+  const expenses = categories.filter(
+    (category) => category.title !== 'Incomes',
+  );
+  return { income, expenses };
 };
