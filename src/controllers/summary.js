@@ -12,13 +12,12 @@ export const getSummaryController = async (req, res) => {
       status: 200,
       message: `Successfully retrieved summary for period ${period}!`,
       income: summary.income,
-      expense: summary.expense,
+      expenses: summary.expenses,
       totalIncome: summary.totalIncome,
-      totalExpense: summary.totalExpense,
+      totalExpenses: summary.totalExpenses,
       balance: summary.balance,
     });
   } catch {
     throw createHttpError(500, 'Server error');
   }
 };
-

@@ -41,9 +41,9 @@ export const getSummaryByPeriod = async (userId, period) => {
 
   const result = {
     income: [],
-    expense: [],
+    expenses: [],
     totalIncome: 0,
-    totalExpense: 0,
+    totalExpenses: 0,
   };
   report.forEach((item) => {
     const { type, categoryId } = item._id;
@@ -59,12 +59,12 @@ export const getSummaryByPeriod = async (userId, period) => {
       result.income.push(categoryObj);
       result.totalIncome += total;
     } else {
-      result.expense.push(categoryObj);
-      result.totalExpense += total;
+      result.expenses.push(categoryObj);
+      result.totalExpenses += total;
     }
   });
 
-  const balance = result.totalIncome - result.totalExpense;
+  const balance = result.totalIncome - result.totalExpenses;
 
   return { ...result, balance };
 };

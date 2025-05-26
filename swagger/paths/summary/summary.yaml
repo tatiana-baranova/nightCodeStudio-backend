@@ -43,7 +43,7 @@ responses:
                   total:
                     type: number
                     example: 50000
-            expense:
+            expenses:
               type: array
               items:
                 type: object
@@ -60,7 +60,7 @@ responses:
             totalIncome:
               type: number
               example: 50000
-            totalExpense:
+            totalExpenses:
               type: number
               example: 10000
             balance:
@@ -73,12 +73,12 @@ responses:
             - categoryId: 6804058087a5c385d8e99714
               title: Incomes
               total: 50000
-          expense:
+          expenses:
             - categoryId: 6804060687a5c385d8e99724
               title: Leisure
               total: 10000
           totalIncome: 50000
-          totalExpense: 10000
+          totalExpenses: 10000
           balance: 40000
   '400':
     $ref: '../../components/responses/400.yaml'
