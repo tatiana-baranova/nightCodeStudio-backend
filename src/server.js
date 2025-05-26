@@ -12,7 +12,16 @@ import { UPLOAD_DIR } from './constants/index.js';
 export const setupServer = () => {
   const app = express();
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: [
+        'https://night-code-studio-front.vercel.app',
+        'http://localhost:3000',
+      ],
+      methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
+      credentials: true,
+    }),
+  );
   app.use(express.json());
   app.use(logger);
   app.use(cookieParser());
